@@ -56,7 +56,8 @@ try {
                     <td><?= htmlspecialchars($animal['species']) ?></td>
                     <td>
                         <?= htmlspecialchars($animal['finder_name'] ?? 'Unknown') ?><br>
-                        <small><?= htmlspecialchars($animal['phone'] ?? '-') ?></small>
+                        <small><?= htmlspecialchars($animal['phone'] ?? '-') ?></small><br>
+                        <a href="edit_finder.php?id=<?= urlencode($animal['finder_id']) ?>">Edit Finder</a>
                     </td>
                     <td><?= htmlspecialchars($animal['age']) ?></td>
                     <td><?= htmlspecialchars($animal['gender']) ?></td>
