@@ -12,7 +12,8 @@ $fieldMap = [
     'email'    => 'Email',
     'street'   => 'Street',
     'postcode' => 'Postcode',
-    'address'  => 'Address'
+    'suburb'  => 'suburb'
+    'notes' => 'notes'
 ];
 
 if (!$id) {
@@ -70,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <form method="POST">
     <?php foreach ($fieldMap as $field => $label): ?>
-        <?php if ($field === 'address'): ?>
+        <?php if ($field === 'suburb'): ?>
             <label><?= $label ?>:<br>
                 <textarea name="<?= $field ?>"><?= htmlspecialchars($finder[$field] ?? '') ?></textarea>
             </label><br>
