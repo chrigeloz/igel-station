@@ -56,21 +56,15 @@ try {
                     <td><?= htmlspecialchars($animal['species']) ?></td>
                     <td>
                         <?= htmlspecialchars($animal['finder_name'] ?? 'Unknown') ?><br>
-                        <small><?= htmlspecialchars($animal['phone'] ?? '-') ?></small><br>
-                        <a href="edit_finder.php?id=<?= urlencode($animal['finder_id']) ?>">Edit Finder</a>
+                        <small><?= htmlspecialchars($animal['phone'] ?? '-') ?><br>
+                        <a href="edit_finder.php?id=<?= urlencode($animal['finder_id']) ?>">Edit Finder</a></small>
                     </td>
                     <td><?= htmlspecialchars($animal['age']) ?></td>
                     <td><?= htmlspecialchars($animal['gender']) ?></td>
                     <td><?= nl2br(htmlspecialchars($animal['condition'])) ?></td>
                     <td><?= $animal['event_count'] ?></td>
                     <td><?= htmlspecialchars($animal['created_at']) ?></td>
-                    <td>
-                        <?php if (!empty($animal['finder_id'])): ?>
-                            <a href="edit_finder.php?id=<?= urlencode($animal['finder_id']) ?>">Edit Finder</a>
-                        <?php else: ?>
-                            <span style="color: #888;">No finder</span>
-                        <?php endif; ?>
-                    </td>
+                    
                 </tr>
             <?php endforeach; ?>
         </tbody>
