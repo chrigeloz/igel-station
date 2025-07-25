@@ -12,8 +12,8 @@ $fieldMap = [
     'email'    => 'Email',
     'street'   => 'Street',
     'postcode' => 'Postcode',
-    'suburb'  => 'suburb',
-    'notes' => 'notes'
+    'suburb'  => 'Suburb',
+    'notes' => 'Notes'
 ];
 
 if (!$id) {
