@@ -12,7 +12,7 @@ $fieldMap = [
     'email'    => 'Email',
     'street'   => 'Street',
     'postcode' => 'Postcode',
-    'suburb'  => 'suburb'
+    'suburb'  => 'suburb',
     'notes' => 'notes'
 ];
 
