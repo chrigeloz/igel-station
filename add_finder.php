@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Street: <input type="street" name="street" value="<?= htmlspecialchars($street) ?>"></label><br>
     <label>PostCode: <input type="postcode" name="postcode" value="<?= htmlspecialchars($postcode) ?>"></label><br>
     <label>Suburb: <input type="suburb" name="suburb" value="<?= htmlspecialchars($suburb) ?>"></label><br>
-    <label>Address:<br><textarea name="address"><?= htmlspecialchars($notes) ?></textarea></label><br>
+    <label>Notes:<br><textarea name="address"><?= htmlspecialchars($notes) ?></textarea></label><br>
     <button type="submit">Add Finder</button>
 </form>
 
