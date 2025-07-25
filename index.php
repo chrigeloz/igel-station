@@ -3,7 +3,7 @@ require_once 'db.php';
 
 $sql = "
     SELECT 
-        animals.id, animals.species, animals.age, animals.gender, animals.condition, animals.created_at,
+        animals.id, animals.name, animals.species, animals.age, animals.gender, animals.condition, animals.created_at,
         finders.id AS finder_id, finders.name AS finder_name, finders.phone,
         (SELECT COUNT(*) FROM events WHERE animal_id = animals.id) AS event_count
     FROM animals
@@ -53,7 +53,8 @@ try {
         <tbody>
             <?php foreach ($animals as $animal): ?>
                 <tr>
-                    <td><?= htmlspecialchars($animal['species']) ?><br><small>
+                    <td><?= htmlspecialchars($animal['name']) ?><br><small>
+                        <?= htmlspecialchars($animal['species']) ?><br>
                         <a href="edit_animal.php?id=<?= urlencode($animal['id']) ?>">edit</a></small>
                     </small></td>
                     <td>
