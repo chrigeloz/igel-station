@@ -54,7 +54,7 @@ try {
             <?php foreach ($animals as $animal): ?>
                 <tr>
                     <td><?= htmlspecialchars($animal['species']) ?><br><small>
-                        <a href="edit_animal.php?id=<?= urlencode($animal['animal_id']) ?>">edit</a></small>
+                        <a href="edit_animal.php?id=<?= urlencode($animal['id']) ?>">edit</a></small>
                     </small></td>
                     <td>
                         <?= htmlspecialchars($animal['finder_name'] ?? 'Unknown') ?><br>
