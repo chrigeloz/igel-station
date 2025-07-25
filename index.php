@@ -40,7 +40,7 @@ try {
     <table>
         <thead>
             <tr>
-                <th>Species</th>
+                <th>Animal</th>
                 <th>Finder</th>
                 <th>Age</th>
                 <th>Gender</th>
