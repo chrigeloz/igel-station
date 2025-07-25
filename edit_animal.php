@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     foreach ($fieldMap as $field => $label) {
         $animal[$field] = trim($_POST[$field] ?? '');
-        $updates[] = "$field = ?";
+        $updates[] = "`$field` = ?";
         $values[] = $animal[$field];
     }
 
