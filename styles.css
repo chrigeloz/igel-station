@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    max-width: 900px;
+    background: #f9f9f9;
+    color: #333;
+}
+
+h1, h2 {
+    color: #2a6ebb;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #2a6ebb;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+table thead {
+    background-color: #2a6ebb;
+    color: white;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    text-align: left;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f7ff;
+}
+
+@media (max-width: 600px) {
+    body {
+        margin: 10px;
+    }
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        display: none;
+    }
+    tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+    }
+    td {
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+    td::before {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #2a6ebb;
+    }
+    td:nth-of-type(1)::before { content: "Species"; }
+    td:nth-of-type(2)::before { content: "Finder"; }
+    td:nth-of-type(3)::before { content: "Age"; }
+    td:nth-of-type(4)::before { content: "Gender"; }
+    td:nth-of-type(5)::before { content: "Condition"; }
+    td:nth-of-type(6)::before { content: "Events"; }
+    td:nth-of-type(7)::before { content: "Added On"; }
+}
