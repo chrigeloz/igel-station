@@ -7,6 +7,7 @@ $finders = $pdo->query("SELECT id, surname, name FROM finders ORDER BY surname, 
 
 $error = '';
 $finder_id = '';
+$name = '';
 $species = '';
 $age = '';
 $gender = 'Unknown';
@@ -14,6 +15,7 @@ $condition = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $finder_id = $_POST['finder_id'] ?? '';
+    $name = trim($_POST['name'] ?? '');
     $species = trim($_POST['species'] ?? '');
     $age = trim($_POST['age'] ?? '');
     $gender = $_POST['gender'] ?? 'Unknown';
@@ -21,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($finder_id && $species) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO animals (finder_id, species, age, gender, `condition`) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$finder_id, $species, $age, $gender, $condition]);
+            $stmt = $pdo->prepare("INSERT INTO animals (finder_id, name, species, age, gender, `condition`) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$finder_id, $name, $species, $age, $gender, $condition]);
             header('Location: index.php');
             exit;
         } catch (PDOException $e) {
@@ -62,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endforeach; ?>
         </select>
     </label><br>
-
+    <label>Name*: <input type="text" name="name" required value="<?= htmlspecialchars($name) ?>"></label><br>
     <label>Species*: <input type="text" name="species" required value="<?= htmlspecialchars($species) ?>"></label><br>
     <label>Age: <input type="text" name="age" value="<?= htmlspecialchars($age) ?>"></label><br>
 
