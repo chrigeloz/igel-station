@@ -6,6 +6,7 @@ $error = '';
 $success = '';
 
 $fieldMap = [
+    'name'   => 'Name',
     'species'   => 'Species',
     'age'       => 'Age',
     'gender'    => 'Gender',
