@@ -47,7 +47,7 @@ try {
                 <th>Condition</th>
                 <th>Events</th>
                 <th>Added On</th>
-                <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>
