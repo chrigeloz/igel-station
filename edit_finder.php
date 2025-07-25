@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <form method="POST">
     <?php foreach ($fieldMap as $field => $label): ?>
-        <?php if ($field === 'suburb'): ?>
+        <?php if ($field === 'notes'): ?>
             <label><?= $label ?>:<br>
                 <textarea name="<?= $field ?>"><?= htmlspecialchars($finder[$field] ?? '') ?></textarea>
             </label><br>
