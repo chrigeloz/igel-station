@@ -8,6 +8,7 @@ $email = '';
 $street = '';
 $postcode = '';
 $address = '';
+$notes = '';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -17,12 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $street = $_POST['street'] ?? '';
     $postcode = $_POST['postcode'] ?? '';
-    $address = $_POST['address'] ?? '';
+    $suburb = $_POST['suburb'] ?? '';
+    $address = $_POST['notes'] ?? '';
 
     if ($name) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO finders (surname, name, phone, email, street, postcode, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$surname, $name, $phone, $email, $street, $postcode, $address]);
+            $stmt = $pdo->prepare("INSERT INTO finders (surname, name, phone, email, street, postcode, suburb, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$surname, $name, $phone, $email, $street, $postcode, $suburb, $notes]);
             header('Location: index.php');
             exit;
         } catch (PDOException $e) {
@@ -55,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Email: <input type="email" name="email" value="<?= htmlspecialchars($email) ?>"></label><br>
     <label>Street: <input type="street" name="street" value="<?= htmlspecialchars($street) ?>"></label><br>
     <label>PostCode: <input type="postcode" name="postcode" value="<?= htmlspecialchars($postcode) ?>"></label><br>
-    <label>Address:<br><textarea name="address"><?= htmlspecialchars($address) ?></textarea></label><br>
+    <label>Suburb: <input type="suburb" name="suburb" value="<?= htmlspecialchars($suburb) ?>"></label><br>
+    <label>Address:<br><textarea name="address"><?= htmlspecialchars($notes) ?></textarea></label><br>
     <button type="submit">Add Finder</button>
 </form>
 
