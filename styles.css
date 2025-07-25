@@ -46,7 +46,7 @@ table tr:nth-child(even) {
 }
 
 label {
-border: 1px;
+    color: blue;
 }
 
 @media (max-width: 600px) {
