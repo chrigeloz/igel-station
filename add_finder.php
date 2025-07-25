@@ -1,30 +1,47 @@
 <?php
 require_once 'db.php';
 
-$surname = '';
-$name = '';
-$phone = '';
-$email = '';
-$street = '';
-$postcode = '';
-$address = '';
-$notes = '';
 $error = '';
+$formData = [];
+
+$fieldMap = [
+    'surname'  => 'Surname',
+    'name'     => 'Name',
+    'phone'    => 'Phone',
+    'email'    => 'Email',
+    'street'   => 'Street',
+    'postcode' => 'Postcode',
+    'suburb'   => 'Suburb',
+    'notes'    => 'Notes'
+];
+
+// Initialize formData with empty values
+foreach ($fieldMap as $field => $label) {
+    $formData[$field] = '';
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $surname = $_POST['surname'] ?? '';
-    $name = $_POST['name']      ?? '';  
-    $phone = $_POST['phone'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $street = $_POST['street'] ?? '';
-    $postcode = $_POST['postcode'] ?? '';
-    $suburb = $_POST['suburb'] ?? '';
-    $address = $_POST['notes'] ?? '';
+    // Populate formData from submitted form
+    foreach ($fieldMap as $field => $label) {
+        $formData[$field] = $_POST[$field] ?? '';
+    }
 
-    if ($name) {
+    if (!empty($formData['name'])) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO finders (surname, name, phone, email, street, postcode, suburb, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$surname, $name, $phone, $email, $street, $postcode, $suburb, $notes]);
+            $stmt = $pdo->prepare("
+                INSERT INTO finders (surname, name, phone, email, street, postcode, suburb, notes)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ");
+            $stmt->execute([
+                $formData['surname'],
+                $formData['name'],
+                $formData['phone'],
+                $formData['email'],
+                $formData['street'],
+                $formData['postcode'],
+                $formData['suburb'],
+                $formData['notes']
+            ]);
             header('Location: index.php');
             exit;
         } catch (PDOException $e) {
@@ -51,14 +68,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <form method="POST" action="">
-    <label>Surname*: <input type="text" name="surname" required value="<?= htmlspecialchars($surname) ?>"></label><br>
-    <label>Name*: <input type="text" name="name" required value="<?= htmlspecialchars($name) ?>"></label><br>
-    <label>Phone: <input type="text" name="phone" value="<?= htmlspecialchars($phone) ?>"></label><br>
-    <label>Email: <input type="email" name="email" value="<?= htmlspecialchars($email) ?>"></label><br>
-    <label>Street: <input type="street" name="street" value="<?= htmlspecialchars($street) ?>"></label><br>
-    <label>PostCode: <input type="postcode" name="postcode" value="<?= htmlspecialchars($postcode) ?>"></label><br>
-    <label>Suburb: <input type="suburb" name="suburb" value="<?= htmlspecialchars($suburb) ?>"></label><br>
-    <label>Notes:<br><textarea name="address"><?= htmlspecialchars($notes) ?></textarea></label><br>
+    <?php foreach ($fieldMap as $field => $label): ?>
+        <?php if ($field === 'notes'): ?>
+            <label><?= $label ?>:<br>
+                <textarea name="<?= $field ?>"><?= htmlspecialchars($formData[$field] ?? '') ?></textarea>
+            </label><br>
+        <?php else: ?>
+            <label><?= $label ?>:
+                <input type="<?= $field === 'email' ? 'email' : 'text' ?>" 
+                       name="<?= $field ?>" 
+                       value="<?= htmlspecialchars($formData[$field] ?? '') ?>"
+                       <?= $field === 'name' ? 'required' : '' ?>>
+            </label><br>
+        <?php endif; ?>
+    <?php endforeach; ?>
     <button type="submit">Add Finder</button>
 </form>
 
