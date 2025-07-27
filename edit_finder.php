@@ -1,7 +1,7 @@
 <?php
 require_once 'db.php';  // Include database connection file
 
-include fieldmap_finder.php;
+include 'fieldmap_finder.php';
 
 $id = $_GET['id'] ?? null;  // Get the 'id' parameter from URL query string, or null if not set
 $error = '';    // Initialize variable to hold error messages
