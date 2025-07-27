@@ -1,19 +1,10 @@
 <?php
 require_once 'db.php';
 
+include 'fieldmap_finder.php';
+
 $error = '';
 $formData = [];
-
-$fieldMap = [
-    'surname'  => 'Surname',
-    'name'     => 'Name',
-    'phone'    => 'Phone',
-    'email'    => 'Email',
-    'street'   => 'Street',
-    'postcode' => 'Postcode',
-    'suburb'   => 'Suburb',
-    'notes'    => 'Notes'
-];
 
 // Initialize formData with empty values
 foreach ($fieldMap as $field => $label) {
