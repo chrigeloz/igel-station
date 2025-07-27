@@ -1,3 +1,5 @@
+<?php
+
 // Map of database fields to their corresponding human-readable labels for the form
 $fieldMap = [
     'surname'  => 'Surname',
@@ -9,3 +11,5 @@ $fieldMap = [
     'suburb'   => 'Suburb',
     'notes'    => 'Notes'
 ];
+
+?>
