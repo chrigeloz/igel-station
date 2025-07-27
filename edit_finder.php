@@ -7,20 +7,6 @@ $id = $_GET['id'] ?? null;  // Get the 'id' parameter from URL query string, or 
 $error = '';    // Initialize variable to hold error messages
 $success = '';  // Initialize variable to hold success messages
 
-// Map of database fields to their corresponding human-readable labels for the form
-/*
-$fieldMap = [
-    'surname'  => 'Surname',
-    'name'     => 'Name',
-    'phone'    => 'Phone',
-    'email'    => 'Email',
-    'street'   => 'Street',
-    'postcode' => 'Postcode',
-    'suburb'   => 'Suburb',
-    'notes'    => 'Notes'
-];
-*/
-
 // If no ID provided in the URL, stop script execution and display error
 if (!$id) {
     die('No finder ID provided.');
