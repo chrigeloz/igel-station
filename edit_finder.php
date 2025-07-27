@@ -1,11 +1,14 @@
 <?php
 require_once 'db.php';  // Include database connection file
 
+include fieldmap_finder.php;
+
 $id = $_GET['id'] ?? null;  // Get the 'id' parameter from URL query string, or null if not set
 $error = '';    // Initialize variable to hold error messages
 $success = '';  // Initialize variable to hold success messages
 
 // Map of database fields to their corresponding human-readable labels for the form
+/*
 $fieldMap = [
     'surname'  => 'Surname',
     'name'     => 'Name',
@@ -16,6 +19,7 @@ $fieldMap = [
     'suburb'   => 'Suburb',
     'notes'    => 'Notes'
 ];
+*/
 
 // If no ID provided in the URL, stop script execution and display error
 if (!$id) {
