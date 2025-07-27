@@ -1,10 +1,19 @@
 <?php
 require_once 'db.php';
 
-include 'fieldmap_finder.php';
-
 $error = '';
 $formData = [];
+
+$fieldMap = [
+    'surname'  => 'Surname',
+    'name'     => 'Name',
+    'phone'    => 'Phone',
+    'email'    => 'Email',
+    'street'   => 'Street',
+    'postcode' => 'Postcode',
+    'suburb'   => 'Suburb',
+    'notes'    => 'Notes'
+];
 
 // Initialize formData with empty values
 foreach ($fieldMap as $field => $label) {
@@ -18,33 +27,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!empty($formData['name'])) {
-    try {
-        // Build placeholders and collect values from $formData using the field map
-        $placeholders = implode(', ', array_fill(0, count($fieldMap), '?'));
-        $columns = implode(', ', array_keys($fieldMap));
-        $values = [];
-
-        foreach (array_keys($fieldMap) as $field) {
-            $values[] = $formData[$field] ?? null;
+        try {
+            $stmt = $pdo->prepare("
+                INSERT INTO finders (surname, name, phone, email, street, postcode, suburb, notes)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ");
+            $stmt->execute([
+                $formData['surname'],
+                $formData['name'],
+                $formData['phone'],
+                $formData['email'],
+                $formData['street'],
+                $formData['postcode'],
+                $formData['suburb'],
+                $formData['notes']
+            ]);
+            header('Location: index.php');
+            exit;
+        } catch (PDOException $e) {
+            $error = "Failed to add finder. Please try again.";
+            error_log("Add finder error: " . $e->getMessage());
         }
-
-        // Prepare and execute the query
-        $stmt = $pdo->prepare("
-            INSERT INTO finders ($columns)
-            VALUES ($placeholders)
-        ");
-        $stmt->execute($values);
-
-        header('Location: index.php');
-        exit;
-    } catch (PDOException $e) {
-        $error = "Failed to add finder. Please try again.";
-        error_log("Add finder error: " . $e->getMessage());
+    } else {
+        $error = "Name is required";
     }
-} else {
-    $error = "Name is required";
 }
-
 ?>
 
 <!DOCTYPE html>
