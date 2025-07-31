@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $formData[$field] = $_POST[$field] ?? '';
     }
 
-    if (!empty($formData['name'])) {
+    if (!empty($formData['lastname'])) {
         try {
             $stmt = $pdo->prepare("
                 INSERT INTO finders (lastname, firstname, phone, email, street, postcode, city, state, notes)
