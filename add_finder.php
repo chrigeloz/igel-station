@@ -5,8 +5,8 @@ $error = '';
 $formData = [];
 
 $fieldMap = [
-    'lastname'  => 'Surname',
-    'firstname'     => 'Name',
+    'lastname'  => 'Last name',
+    'firstname'     => 'First name',
     'phone'    => 'Phone',
     'email'    => 'Email',
     'street'   => 'Street',
