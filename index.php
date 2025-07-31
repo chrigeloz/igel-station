@@ -44,7 +44,7 @@ try {
                 <th>Finder</th>
                 <th>Age</th>
                 <th>Gender</th>
-                <th>Condition</th>
+                <th>Description</th>
                 <th>Events</th>
                 <th>Added On</th>
                 
@@ -64,7 +64,7 @@ try {
                     </td>
                     <td><?= htmlspecialchars($animal['age']) ?></td>
                     <td><?= htmlspecialchars($animal['gender']) ?></td>
-                    <td><?= nl2br(htmlspecialchars($animal['condition'])) ?></td>
+                    <td><?= nl2br(htmlspecialchars($animal['description'])) ?></td>
                     <td><?= $animal['event_count'] ?></td>
                     <td><?= htmlspecialchars($animal['created_at']) ?></td>
                     
