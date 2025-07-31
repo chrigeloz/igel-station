@@ -3,7 +3,7 @@ require_once 'db.php';
 
 $sql = "
     SELECT 
-        animals.id, animals.name, animals.species, animals.age, animals.gender, animals.condition, animals.created_at,
+        animals.id, animals.name, animals.species, animals.age, animals.gender, animals.description, animals.location_found, animals.date_found, animals.date_returned, animals.created_at,
         finders.id AS finder_id, finders.name AS finder_name, finders.phone,
         (SELECT COUNT(*) FROM events WHERE animal_id = animals.id) AS event_count
     FROM animals
