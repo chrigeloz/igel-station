@@ -6,14 +6,14 @@ $formData = [];
 
 $fieldMap = [
     'lastname'  => 'Last name',
-    'firstname'     => 'First name',
-    'phone'    => 'Phone',
-    'email'    => 'Email',
-    'street'   => 'Street',
+    'firstname' => 'First name',
+    'phone' => 'Phone',
+    'email' => 'Email',
+    'street' => 'Street',
     'postcode' => 'Postcode',
-    'city'   => 'City',
-    'state'   => 'State',
-    'notes'    => 'Notes'
+    'city' => 'City',
+    'state' => 'State',
+    'notes' => 'Notes'
 ];
 
 // Initialize formData with empty values
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = $pdo->prepare("
                 INSERT INTO finders (lastname, firstname, phone, email, street, postcode, city, state, notes)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             ");
             $stmt->execute([
                 $formData['lastname'],
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="<?= $field === 'email' ? 'email' : 'text' ?>" 
                        name="<?= $field ?>" 
                        value="<?= htmlspecialchars($formData[$field] ?? '') ?>"
-                       <?= $field === 'name' ? 'required' : '' ?>>
+                       <?= $field === 'lastname' ? 'required' : '' ?>>
             </label><br>
         <?php endif; ?>
     <?php endforeach; ?>
