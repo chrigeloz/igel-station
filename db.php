@@ -1,9 +1,9 @@
 <?php
 $host = '127.0.0.1';
 $port = '3306';
-$dbname = 'chribhtl_animalrescue';
-$user = 'chribhtl_animalrescue';
-$pass = 'V$KQza5^Bhp3';
+$dbname = 'chribhtl_igel';
+$user = 'chribhtl_igel';
+$pass = 'XfsF0$BhAVYB';
 
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4", $user, $pass);
