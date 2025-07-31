@@ -5,13 +5,14 @@ $error = '';
 $formData = [];
 
 $fieldMap = [
-    'surname'  => 'Surname',
-    'name'     => 'Name',
+    'lastname'  => 'Surname',
+    'firstname'     => 'Name',
     'phone'    => 'Phone',
     'email'    => 'Email',
     'street'   => 'Street',
     'postcode' => 'Postcode',
-    'suburb'   => 'Suburb',
+    'city'   => 'City',
+    'state'   => 'State',
     'notes'    => 'Notes'
 ];
 
@@ -29,17 +30,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($formData['name'])) {
         try {
             $stmt = $pdo->prepare("
-                INSERT INTO finders (surname, name, phone, email, street, postcode, suburb, notes)
+                INSERT INTO finders (lastname, firstname, phone, email, street, postcode, city, state, notes)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             ");
             $stmt->execute([
-                $formData['surname'],
-                $formData['name'],
+                $formData['lastname'],
+                $formData['firstname'],
                 $formData['phone'],
                 $formData['email'],
                 $formData['street'],
                 $formData['postcode'],
-                $formData['suburb'],
+                $formData['city'],
+                $formData['state'],
                 $formData['notes']
             ]);
             header('Location: index.php');
